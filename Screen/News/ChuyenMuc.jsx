@@ -6,11 +6,11 @@ import {
    SafeAreaView,
 } from 'react-native';
 
-export default function BongdaVN(){
+export default function ChuyenMuc(){
    return (
       <SafeAreaView style = {myStyles.container}>
          <View style = {myStyles.viewTopSection}>
-            <Text>Bong da VN</Text>
+            <Text>Chuyen Muc</Text>
          </View>
       </SafeAreaView>
    );
