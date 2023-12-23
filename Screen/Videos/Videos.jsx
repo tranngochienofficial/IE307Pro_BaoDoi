@@ -1,14 +1,23 @@
 import React from 'react';
-import {  StyleSheet, Dimensions } from 'react-native';
-import Video from 'react-native-video';
+import { StyleSheet, Dimensions } from 'react-native';
 import VideoComponent from '../../components/VideoComponent/VideoComponent';
+import Swiper from 'react-native-swiper';
 
 const Videos = () => {
+  const datas = [
+    { url: require('../../assets/1.mp4'), like: 10, comment: 5, share: 3, title: 'Video 1' },
+    { url: require('../../assets/2.mp4'), like: 10, comment: 5, share: 3, title: 'Video 2' },
+    // Add more videos as needed
+  ];
+
   return (
-    <VideoComponent />
+    <Swiper style={styles.wrapper} loop={false} showsPagination={false} horizontal={false}>
+      {datas.map((video, index) => (
+        <VideoComponent key={index} video={video} />
+      ))}
+    </Swiper>
   );
 };
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,

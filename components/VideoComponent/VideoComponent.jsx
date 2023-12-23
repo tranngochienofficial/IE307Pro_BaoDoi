@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
-import { StyleSheet, Dimensions, TouchableOpacity, Text, View } from 'react-native';
+import { StyleSheet, Dimensions, TouchableOpacity, Text, View, Image } from 'react-native';
 import Video from 'react-native-video';
-import Icon from 'react-native-vector-icons/FontAwesome'; // You can choose a different icon library
 
-const VideoComponent = () => {
+const VideoComponent = ({video}) => {
   const [isPlaying, setIsPlaying] = useState(true);
 
   const togglePlayPause = () => {
@@ -13,7 +12,7 @@ const VideoComponent = () => {
   return (
     <TouchableOpacity style={styles.container} onPress={togglePlayPause}>
       <Video
-        source={require('../../assets/abc.mp4')} // Replace with the actual path to your video file
+        source={video.url} // Replace with the actual path to your video file
         style={styles.video}
         controls={false}
         resizeMode="cover" // Ensure the video covers the entire container
@@ -21,21 +20,29 @@ const VideoComponent = () => {
       />
 
       <View style={styles.overlay}>
-        <View style={{display: 'flex', marginLeft: 300, marginBottom: 100}}>
+        <View style={{display: 'flex', marginLeft: 310, marginBottom: 30}}>
             <View style={styles.iconContainer}>
-            <Icon name="heart" size={30} color="white" />
-            <Text style={styles.iconText}>Like</Text>
+              <View style={styles.avatar}>
+
+              </View>
             </View>
             <View style={styles.iconContainer}>
-            <Icon name="comment" size={30} color="white" />
-            <Text style={styles.iconText}>Comment</Text>
+              <Image source={require('../../assets/icons8-like-50.png')} style={{height: 40, width: 40}}/>
+              <Text style={styles.iconText}>{video.like}</Text>
             </View>
             <View style={styles.iconContainer}>
-            <Icon name="share" size={30} color="white" />
-            <Text style={styles.iconText}>Share</Text>
+              <Image source={require('../../assets/icons8-comment-50.png')} style={{height: 40, width: 40}}/>
+              <Text style={styles.iconText}>{video.comment}</Text>
+            </View>
+            <View style={styles.iconContainer}>
+              <Image source={require('../../assets/icons8-share-50.png')} style={{height: 40, width: 40}}/>
+              <Text style={styles.iconText}>{video.share}</Text>
+            </View>
+            <View style={styles.iconContainer}>
+              <Image source={require('../../assets/icons8-more-30.png')} style={{height: 40, width: 40}}/>
             </View>
         </View>
-        <Text style={styles.title}>Your Video Title Here</Text>
+        <Text style={styles.title}>{video.title}</Text>
       </View>
     </TouchableOpacity>
   );
@@ -60,18 +67,25 @@ const styles = StyleSheet.create({
   },
   title: {
     color: 'white',
-    fontSize: 16,
+    fontSize: 22,
     fontWeight: 'bold',
   },
   iconContainer: {
-    flexDirection: 'row',
+    flexDirection: 'column',
     alignItems: 'center',
     marginVertical: 8,
+    alignItems: 'center',
   },
   iconText: {
     color: 'white',
     marginLeft: 8,
   },
+  avatar: {
+    width: 70,
+    height: 70,
+    borderRadius: 35,
+    backgroundColor: 'yellow',
+  }
 });
 
 export default VideoComponent;
