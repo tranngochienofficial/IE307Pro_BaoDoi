@@ -3,7 +3,7 @@ import { createStackNavigator } from '@react-navigation/stack'
 import React from 'react'
 import BottomTabs from './BottomTabs'
 import Splash from './Splash'
-import ChuyenMuc from '../Screen/News/ChuyenMuc'
+import ChuyenMuc from './../Screen/News/ChuyenMuc';
 
 const Stack = createStackNavigator()
 const AuthStack = () => {
