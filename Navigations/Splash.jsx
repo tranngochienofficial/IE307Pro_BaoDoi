@@ -21,10 +21,13 @@ const SplashScreen = ({ navigation }) => {
 
    return (
       <View style={styles.container}>
-         <Text>Báo Đời</Text>
+      <Image
+         source={require('../assets/logo.png')}
+         style={{width: '60%', resizeMode: 'contain', margin: 30}}
+      />
          <ActivityIndicator
             animating={animating}
-            color="#FFFFFF" 
+            color="#e60000" 
             size="large"
             style={styles.activityIndicator}
          />
@@ -39,7 +42,7 @@ const styles = StyleSheet.create({
       flex: 1,
       alignItems: 'center',
       justifyContent: 'center',
-      backgroundColor: '#307ecc',
+      backgroundColor: 'white',
    },
    activityIndicator: {
       alignItems: 'center',

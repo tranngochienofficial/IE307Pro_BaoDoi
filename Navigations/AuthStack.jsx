@@ -12,7 +12,14 @@ const AuthStack = () => {
         <Stack.Navigator>
           <Stack.Screen name="Splash" component={Splash} options={{headerShown: false}}/>
           <Stack.Screen name="Tabs" component={BottomTabs} options={{headerShown: false}}/> 
-          <Stack.Screen name="ChuyenMuc" component={ChuyenMuc} options={{headerShown: true}}/> 
+          <Stack.Screen 
+            name="ChuyenMuc"
+            component={ChuyenMuc} 
+            options={{
+              headerShown: true,
+              headerTitleAlign: 'center',
+              
+            }}/> 
         </Stack.Navigator>
     </NavigationContainer>
   )

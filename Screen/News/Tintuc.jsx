@@ -173,9 +173,9 @@ const myStyles = StyleSheet.create({
     marginTop: 35,
   },
   topSection2: {
-    //backgroundColor: 'yellow',
+    backgroundColor: 'yellow',
     left: '5%',
-    marginTop: 18,
+    //marginTop: 18,
   },
   txtWeather:{
     fontSize: 16,
@@ -259,9 +259,9 @@ const myStyles = StyleSheet.create({
   },
   imgHide:{
     tintColor: '#d9d9d9',
-    left: '350%',
-    width: 15,
-    height: 15,
+    left: '300%',
+    width: 17,
+    height: 17,
   },
   touchImgHide:{
     left: '150%',
