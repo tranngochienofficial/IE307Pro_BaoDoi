@@ -1,5 +1,5 @@
 import React from 'react';
-import AuthStack from './Navigations/AuthStack';
+import AuthStack from './src/Navigations/AuthStack';
 
 const App = () => {
   return (
