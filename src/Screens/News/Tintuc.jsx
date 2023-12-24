@@ -90,25 +90,25 @@ const Tintuc = ({navigation}) => {
     <SafeAreaView style={myStyles.container}>
       <ImageBackground
         style={myStyles.IBTop}
-        source={require('./assets/header.png')}>
+        source={require('../../assets/header.png')}>
         <View style={myStyles.topSection}>
           <StatusBar translucent={true} backgroundColor="transparent" />
           <TouchableOpacity style={myStyles.imgList} onPress={ChuyenMucEvents}>
             <Image
               style={myStyles.imgList}
-              source={require('./assets/list.png')}
+              source={require('../../assets/list.png')}
             />
           </TouchableOpacity>
           <TouchableOpacity style={myStyles.imgSearch}>
             <Image
               style={myStyles.imgSearch}
-              source={require('./assets/search.png')}
+              source={require('../../assets/search.png')}
             />
           </TouchableOpacity>
           <TouchableOpacity style={myStyles.imgAvatar}>
             <Image
               style={myStyles.imgAvatar}
-              source={require('./assets/avatar.png')}
+              source={require('../../assets/avatar.png')}
             />
           </TouchableOpacity>
           <View style={myStyles.viewFlatList}>
@@ -128,7 +128,7 @@ const Tintuc = ({navigation}) => {
         <View style={myStyles.bottomSection2}>
           <Image
             style={myStyles.imgContent}
-            source={require('./assets/header.png')}
+            source={require('../../assets/header.png')}
           />
           <View style={myStyles.rightContent}>
             <Text style={myStyles.txtContent}>
@@ -137,13 +137,13 @@ const Tintuc = ({navigation}) => {
             <View style={myStyles.viewPublisher}>
               <Image
                 style={myStyles.imgPublisher}
-                source={require('./assets/vnexpress.png')}
+                source={require('../../assets/vnexpress.png')}
               />
               <Text style={myStyles.txtTimeContent}>· 1 giờ</Text>
               <TouchableOpacity  style={myStyles.touchImgHide}>
                 <Image
                   style={myStyles.imgHide}
-                  source={require('./assets/hide.png')}
+                  source={require('../../assets/hide.png')}
                 />
               </TouchableOpacity>
             </View>

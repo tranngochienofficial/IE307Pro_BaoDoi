@@ -2,8 +2,8 @@ import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
 import React from 'react'
 import BottomTabs from './BottomTabs'
-import Splash from './Splash'
-import ChuyenMuc from './../Screen/News/ChuyenMuc';
+import Splash from '../Screens/Splash'
+import ChuyenMuc from '../Screens/News/ChuyenMuc';
 
 const Stack = createStackNavigator()
 const AuthStack = () => {
