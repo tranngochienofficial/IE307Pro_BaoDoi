@@ -1,7 +1,6 @@
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import React from 'react';
 import {Image, StyleSheet} from 'react-native';
-import Nong from '../Screen/News/Nong';
 import Tintuc from '../Screen/News/Tintuc';
 import Videos from '../Screen/Videos/Videos';
 import Trends from '../Screen/Trends/Trends';
