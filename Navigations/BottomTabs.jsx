@@ -1,11 +1,11 @@
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import React from 'react';
 import {Image, StyleSheet} from 'react-native';
-import Nong from '../Screens/News/Nong';
-import Tintuc from '../Screens/News/Tintuc';
-import Videos from '../Screens/Videos/Videos';
-import Trends from '../Screens/Trends/Trends';
-import Extensions from '../Screens/Extensions/Extensions';
+import Nong from '../Screen/News/Nong';
+import Tintuc from '../Screen/News/Tintuc';
+import Videos from '../Screen/Videos/Videos';
+import Trends from '../Screen/Trends/Trends';
+import Extensions from '../Screen/Extensions/Extensions';
 
 const BottomTab = createBottomTabNavigator();
 
@@ -29,7 +29,7 @@ const BottomTabs = () => {
           tabBarLabel: 'Tin tức',
           tabBarIcon: ({color, size}) => (
             <Image
-              source={require('../assets/news.png')}
+              source={require('./assets/tintuc.png')}
               style={{tintColor: color, width: 23, height: 23}}
             />
           ),
@@ -44,7 +44,7 @@ const BottomTabs = () => {
           tabBarBadgeStyle: {backgroundColor: 'red', fontSize: 1},
           tabBarIcon: ({color, size}) => (
             <Image
-              source={require('../assets/video.png')}
+              source={require('./assets/video.png')}
               style={{tintColor: color, width: 25, height: 27}}
             />
           ),
@@ -57,7 +57,7 @@ const BottomTabs = () => {
           tabBarLabel: 'Xu hướng',
           tabBarIcon: ({color, size}) => (
             <Image
-              source={require('../assets/trend.png')}
+              source={require('./assets/xuhuong.png')}
               style={{tintColor: color, width: 27, height: 27}}
             />
           ),
@@ -70,7 +70,7 @@ const BottomTabs = () => {
           tabBarLabel: 'Tiện ích',
           tabBarIcon: ({color, size}) => (
             <Image
-              source={require('../assets/extension.png')}
+              source={require('./assets/tienich.png')}
               style={{tintColor: color, width: 25, height: 25}}
             />
           ),
