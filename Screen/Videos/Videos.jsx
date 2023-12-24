@@ -5,8 +5,8 @@ import Swiper from 'react-native-swiper';
 
 const Videos = () => {
   const datas = [
-    { url: require('../../assets/1.mp4'), like: 10, comment: 5, share: 3, title: 'Video 1' },
-    { url: require('../../assets/2.mp4'), like: 10, comment: 5, share: 3, title: 'Video 2' },
+    { url: require('../../assets/1.mp4'), like: 10, comment: 5, share: 3, title: 'Video 1', isPlay: true },
+    { url: require('../../assets/2.mp4'), like: 10, comment: 5, share: 3, title: 'Video 2', isPlay: false },
     // Add more videos as needed
   ];
 

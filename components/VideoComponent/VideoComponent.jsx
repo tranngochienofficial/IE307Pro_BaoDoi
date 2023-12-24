@@ -3,10 +3,32 @@ import { StyleSheet, Dimensions, TouchableOpacity, Text, View, Image } from 'rea
 import Video from 'react-native-video';
 
 const VideoComponent = ({video}) => {
-  const [isPlaying, setIsPlaying] = useState(true);
+  const [isPlaying, setIsPlaying] = useState(video.isPlay);
+  const [isLiked, setIsLiked] = useState(false);
+  const [like, setLike] = useState(video.like)
+  const [isClickComment, setIsClickComment] = useState(false)
+  const [isClickShare, setIsClickShare] = useState(false)
 
+  const clickLike = () => {
+    setIsLiked(!isLiked)
+    if (isLiked) {
+      setLike(like + 1)
+    } else {
+      setLike(video.like)
+    }
+
+  }
+
+  const clickComment = () => {
+    setIsClickComment(!isClickComment)
+  }
+  const clickShare = () => {
+    setIsClickShare(!isClickShare)
+  }
   const togglePlayPause = () => {
     setIsPlaying(!isPlaying);
+    setIsClickComment(false)
+    setIsClickShare(false)
   };
 
   return (
@@ -26,23 +48,38 @@ const VideoComponent = ({video}) => {
 
               </View>
             </View>
-            <View style={styles.iconContainer}>
+            <TouchableOpacity style={styles.iconContainer} onPress={clickLike}>
               <Image source={require('../../assets/icons8-like-50.png')} style={{height: 40, width: 40}}/>
-              <Text style={styles.iconText}>{video.like}</Text>
-            </View>
-            <View style={styles.iconContainer}>
+              <Text style={styles.iconText}>{like}</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.iconContainer} onPress={clickComment}>
               <Image source={require('../../assets/icons8-comment-50.png')} style={{height: 40, width: 40}}/>
               <Text style={styles.iconText}>{video.comment}</Text>
-            </View>
-            <View style={styles.iconContainer}>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.iconContainer} onPress={clickShare}>
               <Image source={require('../../assets/icons8-share-50.png')} style={{height: 40, width: 40}}/>
               <Text style={styles.iconText}>{video.share}</Text>
-            </View>
+            </TouchableOpacity>
             <View style={styles.iconContainer}>
               <Image source={require('../../assets/icons8-more-30.png')} style={{height: 40, width: 40}}/>
             </View>
         </View>
         <Text style={styles.title}>{video.title}</Text>
+        {isClickComment && (
+          <View style={styles.commentContainer}>
+            <Text style={styles.userComment}>User 1: comment 1</Text>
+            <Text style={styles.userComment}>User 2: comment 2</Text>
+            <Text style={styles.userComment}>User 3: comment 3</Text>
+          </View>
+        )}
+        {isClickShare && (
+          <View style={styles.commentContainer}>
+            <Text style={{textAlign: 'center', fontSize: 20}}>Share</Text>
+            <View>
+
+            </View>
+          </View>
+        )}
       </View>
     </TouchableOpacity>
   );
@@ -85,6 +122,18 @@ const styles = StyleSheet.create({
     height: 70,
     borderRadius: 35,
     backgroundColor: 'yellow',
+  },
+  commentContainer: {
+      width: '100%',
+      height: 300,
+      backgroundColor: 'white',
+      borderRadius: 10,
+      padding: 20,
+      margin: 15,
+      position: 'absolute',
+    },
+    userComment: {
+    fontSize: 18,
   }
 });
 
