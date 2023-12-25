@@ -33,7 +33,6 @@ const Tintuc = ({ navigation }) => {
     setCategory(item.title)
   };
 
-
   return (
     <SafeAreaView style={styles.container}>
       <ImageBackground
@@ -64,7 +63,7 @@ const Tintuc = ({ navigation }) => {
           </TouchableOpacity>
 
           <View style={styles.viewFlatList}>
-           <FlatList
+          <FlatList
               horizontal={true}
               data={DATA}
               renderItem={({ item }) => (

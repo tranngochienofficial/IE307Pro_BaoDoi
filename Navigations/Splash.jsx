@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { ActivityIndicator, View, StyleSheet, Image, Text } from 'react-native';
+import { ActivityIndicator, View, StyleSheet, Image, Text, StatusBar } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const SplashScreen = ({ navigation }) => {
@@ -21,6 +21,8 @@ const SplashScreen = ({ navigation }) => {
 
    return (
       <View style={styles.container}>
+      <StatusBar translucent={true} backgroundColor="transparent" />
+
       <Image
          source={require('../assets/logo.png')}
          style={{width: '60%', resizeMode: 'contain', margin: 30}}
