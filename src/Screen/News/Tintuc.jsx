@@ -66,6 +66,9 @@ const Tintuc = ({ navigation, route }) => {
     loadArticleMiniStyle();
   }, []); // Empty dependency array ensures the effect runs only once when the component mounts
 
+  const navigateToUser = () => {
+    navigation.navigate('User')
+  }
   return (
     <View style={styles.container}>
       <ImageBackground
@@ -88,7 +91,7 @@ const Tintuc = ({ navigation, route }) => {
             />
           </TouchableOpacity>
 
-          <TouchableOpacity style={styles.imgAvatar}>
+          <TouchableOpacity style={styles.imgAvatar} onPress={navigateToUser}>
             <Image
               style={styles.imgAvatar}
               source={require('./assets/avatar.png')}

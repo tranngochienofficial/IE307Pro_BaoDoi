@@ -6,6 +6,9 @@ import Splash from './Splash'
 import ChuyenMuc from './../Screen/News/ChuyenMuc';
 import ArticleDetail from '../Screen/News/ArticleDetail'
 import { ImageBackground } from 'react-native';
+import User from '../Screen/User/User'
+import Login from '../Screen/Login/Login'
+import SignUp from '../Screen/Login/SignUp'
 
 const Stack = createStackNavigator()
 const AuthStack = () => {
@@ -54,7 +57,42 @@ const AuthStack = () => {
                 },
               })}
             />
-            
+            <Stack.Screen
+              name="User"
+              component={User}
+              options={{ 
+                headerTitle: 'Cá nhân', 
+                headerShown: true ,
+                headerTitleStyle: {
+                  fontSize: 25
+                },
+                headerTitleAlign: 'center' // Đưa title chính giữa
+              }}
+            />
+            <Stack.Screen
+              name="Login"
+              component={Login}
+              options={{ 
+                headerTitle: 'Đăng nhập', 
+                headerShown: true ,
+                headerTitleStyle: {
+                  fontSize: 25
+                },
+                headerTitleAlign: 'center' // Đưa title chính giữa
+              }}
+            />
+            <Stack.Screen
+              name="SignUp"
+              component={SignUp}
+              options={{ 
+                headerTitle: 'Đăng ký', 
+                headerShown: true ,
+                headerTitleStyle: {
+                  fontSize: 25
+                },
+                headerTitleAlign: 'center' // Đưa title chính giữa
+              }}
+            />
         </Stack.Navigator>
     </NavigationContainer>
   )
