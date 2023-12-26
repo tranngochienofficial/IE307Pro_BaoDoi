@@ -85,6 +85,7 @@ const myStyles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: ' #f2f2f2',
+    //marginTop: 25,
   },
 })
 

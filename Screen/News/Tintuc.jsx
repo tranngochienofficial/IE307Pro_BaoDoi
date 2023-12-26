@@ -96,7 +96,7 @@ const Tintuc = ({ navigation, route }) => {
           </TouchableOpacity>
 
           <View style={styles.viewFlatList}>
-           <FlatList
+          <FlatList
               horizontal={true}
               data={DATA}
               renderItem={({ item }) => (
