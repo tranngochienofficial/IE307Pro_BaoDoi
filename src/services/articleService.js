@@ -1,6 +1,7 @@
 import axios from "axios";
+import { REACT_APP_API_URL } from "@env"
 
 export const getArticleByCategory = async (category) => {
-    const res = await axios.get(`https://baodoi-be-f5973c632bd1.herokuapp.com/api/article/getByCategory/${category}`)
+    const res = await axios.get(`${REACT_APP_API_URL}/article/getByCategory/${category}`)
     return res.data
 }
