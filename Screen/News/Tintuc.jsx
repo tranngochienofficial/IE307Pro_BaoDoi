@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   Text,
   View,
@@ -14,6 +14,7 @@ import {
 
 import { DATA } from '../../datas/datas'; 
 import ArticleList from './ArticleList';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Item = ({ title, onPress }) => (
   <TouchableOpacity onPress={onPress}>
@@ -23,19 +24,50 @@ const Item = ({ title, onPress }) => (
   </TouchableOpacity>
 );
 
-const Tintuc = ({ navigation }) => {
+const Tintuc = ({ navigation, route }) => {
   const ChuyenMucEvents = () => {
     navigation.navigate('ChuyenMuc');
   };
 
-  const [category, setCategory] = useState('Nóng')
+  let getCategory = ''
+  if (route.params) {
+    getCategory = route.params.getCategory;
+  }
+
+  const {articleMiniStyleNew} = route.params || ''
+  const [category, setCategory] = useState(getCategory ? getCategory : 'Nóng')
+  useEffect(() => {
+    if (getCategory) {
+      setCategory(getCategory);
+    }
+  }, [getCategory]);
+
+
   const handleItemPress = (item) => {
     setCategory(item.title)
   };
 
+  const [articleMiniStyle, setArticleMiniStyle] = useState('small');
+
+  useEffect(() => {
+    const loadArticleMiniStyle = async () => {
+      try {
+        const storedStyle = await AsyncStorage.getItem('articleMiniStyle');
+        if (storedStyle === null) {
+          await AsyncStorage.setItem('articleMiniStyle', articleMiniStyle);
+        } else {
+          setArticleMiniStyle(storedStyle);
+        }
+      } catch (error) {
+        console.error('Error loading articleMiniStyle:', error);
+      }
+    };
+
+    loadArticleMiniStyle();
+  }, []); // Empty dependency array ensures the effect runs only once when the component mounts
 
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={styles.container}>
       <ImageBackground
         style={styles.IBTop}
         source={require('./assets/header.png')}>
@@ -82,25 +114,23 @@ const Tintuc = ({ navigation }) => {
           <Text style={styles.txtWeather}>Weather | Time</Text>
         </View>
 
-      <View>
-        <ArticleList category={category} />
-      </View>
-
-
       </ImageBackground>
-    </SafeAreaView>
+      <ScrollView style={{marginBottom: 100}}>
+        <ArticleList category={category} articleMiniStyle={articleMiniStyleNew ? articleMiniStyleNew : articleMiniStyle}/>
+      </ScrollView>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     backgroundColor: 'white',
+    display: 'flex'
   },
   IBTop: {
-    height: '37%',
     flexDirection: 'column',
     resizeMode: 'center',
+    paddingBottom: 15
   },
   topSection: {
     flexDirection: 'row',
@@ -115,6 +145,7 @@ const styles = StyleSheet.create({
   txtWeather: {
     fontSize: 16,
     color: 'white',
+
   },
   imgList: {
     height: 22,

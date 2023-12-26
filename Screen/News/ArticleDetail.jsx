@@ -6,8 +6,10 @@ const ArticleDetail = ({ route }) => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>{article.articleTitle}</Text>
-      {/* Add more details or components to display other article properties */}
+      <Text style={styles.title}>{article.title}</Text>
+      <View>
+        <Text>{article.content}</Text>
+      </View>
     </View>
   );
 };

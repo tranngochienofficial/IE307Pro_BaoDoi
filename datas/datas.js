@@ -14,7 +14,48 @@ export const DATA = [
         imgUrl: 'https://photo-baomoi.bmcdn.me/w100_r1x1/2023_10_14_65_47218968/e21ebe21876d6e33377c.jpg.webp',
         articleTitle: "Tổng Bí thư Nguyễn Phú Trọng: 'Nhân dân là người trực tiếp thụ hưởng và hiểu tất cả'",
         content: 'Nội dung của bài viết 2...'
-      }
+      },
+      {
+        articleId: '3',
+        imgUrl: 'https://photo-baomoi.bmcdn.me/w100_r1x1/2023_10_14_65_47218968/e21ebe21876d6e33377c.jpg.webp',
+        articleTitle: "Tổng Bí thư Nguyễn Phú Trọng: 'Nhân dân là người trực tiếp thụ hưởng và hiểu tất cả'",
+        content: 'Nội dung của bài viết 2...'
+      },
+      {
+        articleId: '4',
+        imgUrl: 'https://photo-baomoi.bmcdn.me/w700_r16x9/2023_12_24_20_47898275/d14a4f6b3b27d2798b36.jpg',
+        articleTitle: 'Người dân Hà Nội ngắm tuyết rơi đón Giáng sinh trên phố đi bộ',
+        content: 'Nội dung của bài viết 1...'
+      },
+      {
+        articleId: '5',
+        imgUrl: 'https://photo-baomoi.bmcdn.me/w100_r1x1/2023_10_14_65_47218968/e21ebe21876d6e33377c.jpg.webp',
+        articleTitle: "Tổng Bí thư Nguyễn Phú Trọng: 'Nhân dân là người trực tiếp thụ hưởng và hiểu tất cả'",
+        content: 'Nội dung của bài viết 2...'
+      },
+      {
+        articleId: '6',
+        imgUrl: 'https://photo-baomoi.bmcdn.me/w100_r1x1/2023_10_14_65_47218968/e21ebe21876d6e33377c.jpg.webp',
+        articleTitle: "Tổng Bí thư Nguyễn Phú Trọng: 'Nhân dân là người trực tiếp thụ hưởng và hiểu tất cả'",
+        content: 'Nội dung của bài viết 2...'
+      },      {
+        articleId: '7',
+        imgUrl: 'https://photo-baomoi.bmcdn.me/w700_r16x9/2023_12_24_20_47898275/d14a4f6b3b27d2798b36.jpg',
+        articleTitle: 'Người dân Hà Nội ngắm tuyết rơi đón Giáng sinh trên phố đi bộ',
+        content: 'Nội dung của bài viết 1...'
+      },
+      {
+        articleId: '8',
+        imgUrl: 'https://photo-baomoi.bmcdn.me/w100_r1x1/2023_10_14_65_47218968/e21ebe21876d6e33377c.jpg.webp',
+        articleTitle: "Tổng Bí thư Nguyễn Phú Trọng: 'Nhân dân là người trực tiếp thụ hưởng và hiểu tất cả'",
+        content: 'Nội dung của bài viết 2...'
+      },
+      {
+        articleId: '9',
+        imgUrl: 'https://photo-baomoi.bmcdn.me/w100_r1x1/2023_10_14_65_47218968/e21ebe21876d6e33377c.jpg.webp',
+        articleTitle: "Tổng Bí thư Nguyễn Phú Trọng: 'Nhân dân là người trực tiếp thụ hưởng và hiểu tất cả'",
+        content: 'Nội dung của bài viết 2...'
+      },
     ]
   },
   {

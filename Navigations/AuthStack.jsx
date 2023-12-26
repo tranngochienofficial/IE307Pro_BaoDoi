@@ -14,34 +14,34 @@ const AuthStack = () => {
         <Stack.Navigator>
           <Stack.Screen name="Splash" component={Splash} options={{headerShown: false}}/>
           <Stack.Screen name="Tabs" component={BottomTabs} options={{headerShown: false}}/> 
-<Stack.Screen 
-  name="ChuyenMuc"
-  component={ChuyenMuc} 
-  options={({ route }) => ({
-    title: 'Chuyên mục',
-    headerShown: true,
-    headerTitleAlign: 'center',
-    headerStyle: {
-      backgroundColor: 'transparent', // Đặt màu nền là transparent để hiển thị background image
-    },
-    headerTitleStyle: {
-      fontSize: 25,
-      color: 'white',
-    },
-    headerBackground: () => (
-      <ImageBackground
-        source={require('../Screen/News/assets/header.png')} // Đường dẫn của background image
-        style={{ flex: 1, width: '100%' }}
-      />
-    ),
-  })}
-/>
+          <Stack.Screen 
+            name="ChuyenMuc"
+            component={ChuyenMuc} 
+            options={({ route }) => ({
+              title: 'Chuyên mục',
+              headerShown: true,
+              headerTitleAlign: 'center',
+              headerStyle: {
+                backgroundColor: 'transparent', // Đặt màu nền là transparent để hiển thị background image
+              },
+              headerTitleStyle: {
+                fontSize: 25,
+                color: 'white',
+              },
+              headerBackground: () => (
+                <ImageBackground
+                  source={require('../Screen/News/assets/header.png')} // Đường dẫn của background image
+                  style={{ flex: 1, width: '100%' }}
+                />
+              ),
+            })}
+          />
             <Stack.Screen
               name="ArticleDetail"
               component={ArticleDetail}
               options={({ route }) => ({
                 title: route.params && route.params.article
-                  ? route.params.article.articleTitle
+                  ? route.params.article.title
                   : 'Default Title', // Sử dụng articleTitle từ tham số route.params.article nếu có, ngược lại sử dụng Default Title
                 headerShown: true,
                 headerTitleAlign: 'center',
@@ -54,7 +54,7 @@ const AuthStack = () => {
                 },
               })}
             />
-
+            
         </Stack.Navigator>
     </NavigationContainer>
   )
