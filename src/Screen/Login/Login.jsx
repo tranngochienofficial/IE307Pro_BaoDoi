@@ -3,17 +3,12 @@ import { Image, Text, View, StyleSheet } from 'react-native'
 import { TouchableOpacity } from 'react-native-gesture-handler'
 import ButtonComponent from '../../components/ButtonComponent/ButtonComponent'
 import InputComponent from '../../components/InputComponent/InputComponent'
-// import { useAuth } from '../../AuthContext'
-import { Alert } from 'react-native'
-import AsyncStorage from '@react-native-async-storage/async-storage';
-//Pham Van Hieu
-//21520857
-import { loginUser } from '../../services/userService'
+import { useAuth } from '../../../AuthContext'
+import { Alert } from 'react-native';
 
 const Login = ({navigation}) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-//   const { login, isLoggedIn } = useAuth(); 
 
   const handleEmailChange = (text) => {
     setEmail(text);
@@ -22,24 +17,17 @@ const Login = ({navigation}) => {
     setPassword(text);
   }
 
+  const { login, getUserInfo } = useAuth()
+
   const handleLogin = async () => {
-  try {
-    const data = { username: email, password };
-    const result = await loginUser(data);
-    if (result.access_token) {
-      await AsyncStorage.setItem('access_token', result.access_token)
-      navigation.navigate('Tabs');
-      Alert.alert('Thành công');
-      setEmail('');
-      setPassword('');
-    } else if (result.status === 'ERROR') {
-      Alert.alert(result.message);
-    }
-  } catch (error) {
-    Alert.alert('An error occurred while logging in');
-    console.error(error);
-  }
-  };
+    const data = {username: email, password}
+    const isLogin = await login(data)
+    if (isLogin === true) {
+      navigation.navigate('News')
+      Alert.alert('Thành công')
+      setEmail('')
+      setPassword('')
+    }}
 
   return (
     <View style={loginStyle.container}>

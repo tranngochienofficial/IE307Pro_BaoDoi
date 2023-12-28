@@ -3,7 +3,7 @@ import { createStackNavigator } from '@react-navigation/stack'
 import React from 'react'
 import BottomTabs from './BottomTabs'
 import Splash from './Splash'
-import ChuyenMuc from './../Screen/News/ChuyenMuc';
+import Categories from '../Screen/News/Categories';
 import ArticleDetail from '../Screen/News/ArticleDetail'
 import { ImageBackground } from 'react-native';
 import User from '../Screen/User/User'
@@ -18,8 +18,8 @@ const AuthStack = () => {
           <Stack.Screen name="Splash" component={Splash} options={{headerShown: false}}/>
           <Stack.Screen name="Tabs" component={BottomTabs} options={{headerShown: false}}/> 
           <Stack.Screen 
-            name="ChuyenMuc"
-            component={ChuyenMuc} 
+            name="Categories"
+            component={Categories} 
             options={({ route }) => ({
               title: 'Chuyên mục',
               headerShown: true,

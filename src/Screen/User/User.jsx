@@ -1,44 +1,32 @@
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import React, { useEffect, useState } from 'react';
 import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
+import { useAuth } from '../../../AuthContext';
 
 const User = ({navigation}) => {
   const clickLogin = () => {
     navigation.navigate('Login')
   }
 
-  const [isLoggedIn, setIsLoggedIn] = useState(null)
-  const checkLoginStatus = async () => {
-    try {
-      const access_token = await AsyncStorage.getItem('access_token');
-      if (access_token) {
-        setIsLoggedIn(true)
-      } else {
-        setIsLoggedIn(false)
-      }}
-    catch (error) { 
-      console.error("Error checking login status:", error);
-    }
-  };
+  const { user, logout } = useAuth()
+ 
+  const handleLogout = async () => {
+    await logout()
+    navigation.navigate('Tabs');
 
-  useEffect(()=> {
-    checkLoginStatus()
-  },[])
-
-  console.log(isLoggedIn)
+  }
   return (
     <ScrollView style={styles.container}>
       <View style={styles.userInfoContainer}>
         <Image style={styles.avatar} source={{uri: 'https://i.pinimg.com/564x/29/b8/d2/29b8d250380266eb04be05fe21ef19a7.jpg'}} />
-        <TouchableOpacity onPress={clickLogin}>
-          {isLoggedIn ? (
-            <Text style={styles.title}>{`Xin chào ${isLoggedIn}`}</Text>
+          {user ? (
+            <Text style={styles.title}>{user.email}</Text>
           ) : 
           (
+        <TouchableOpacity onPress={clickLogin}>
           <Text style={styles.title}>Đăng nhập</Text>
-          )}
         </TouchableOpacity>
+          )}
       </View>
       <View style={styles.menuContainer}>
         <View style={styles.menuRow}>
@@ -83,7 +71,11 @@ const User = ({navigation}) => {
         <Text style={styles.item}>Bình chọn cho báo mới</Text>
         <Text style={styles.item}>Email góp ý, báo lỗi</Text>
       </View>
-
+      <View style={styles.sectionContainer}>
+        <TouchableOpacity onPress={handleLogout}>
+          <Text style={styles.sectionTitle}>Logout</Text>
+        </TouchableOpacity>
+      </View>
     </ScrollView>
   );
 };

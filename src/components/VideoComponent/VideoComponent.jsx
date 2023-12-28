@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { StyleSheet, Dimensions, TouchableOpacity, Text, View, Image } from 'react-native';
 import Video from 'react-native-video';
 
-const VideoComponent = ({video}) => {
-  const [isPlaying, setIsPlaying] = useState(video.isPlay);
+const VideoComponent = ({video, isActive }) => {
+  const [isPlaying, setIsPlaying] = useState(true);
   const [isLiked, setIsLiked] = useState(false);
   const [like, setLike] = useState(video.like)
   const [isClickComment, setIsClickComment] = useState(false)
@@ -11,14 +11,15 @@ const VideoComponent = ({video}) => {
 
   const clickLike = () => {
     setIsLiked(!isLiked)
-    if (isLiked) {
-      setLike(like + 1)
-    } else {
-      setLike(video.like)
-    }
-
   }
 
+  useEffect(() => {
+    if (isLiked) {
+          setLike(like + 1)
+        } else {
+          setLike(video.like)
+        }
+  },[isLiked])
   const clickComment = () => {
     setIsClickComment(!isClickComment)
   }
@@ -31,15 +32,28 @@ const VideoComponent = ({video}) => {
     setIsClickShare(false)
   };
 
+  const videoRef = useRef(null);
+
+  useEffect(() => {
+    if (isActive) {
+      setIsPlaying(true);
+    } else {
+      setIsPlaying(false);
+      // Pause the video when it is not active
+      videoRef.current?.seek(0);
+    }
+  }, [isActive]);
+
   return (
     <TouchableOpacity style={styles.container} onPress={togglePlayPause}>
-      <Video
-        source={video.url} // Replace with the actual path to your video file
+       <Video
+        ref={videoRef}
+        source={video.url}
         style={styles.video}
-        controls={false}
-        resizeMode="cover" // Ensure the video covers the entire container
-        paused={!isPlaying} // Set the paused prop based on the play/pause state
-      />
+        paused={!isPlaying}
+        repeat={true}
+        resizeMode="cover"
+        />
 
       <View style={styles.overlay}>
         <View style={{display: 'flex', marginLeft: 310, marginBottom: 30}}>
@@ -72,14 +86,7 @@ const VideoComponent = ({video}) => {
             <Text style={styles.userComment}>User 3: comment 3</Text>
           </View>
         )}
-        {isClickShare && (
-          <View style={styles.commentContainer}>
-            <Text style={{textAlign: 'center', fontSize: 20}}>Share</Text>
-            <View>
-
-            </View>
-          </View>
-        )}
+     
       </View>
     </TouchableOpacity>
   );

@@ -1,7 +1,7 @@
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import React from 'react';
 import {Image, StyleSheet} from 'react-native';
-import Tintuc from '../Screen/News/Tintuc';
+import News from '../Screen/News/News';
 import Videos from '../Screen/Videos/Videos';
 import Trends from '../Screen/Trends/Trends';
 import Extensions from '../Screen/Extensions/Extensions';
@@ -12,7 +12,7 @@ const BottomTabs = () => {
   return (
     <BottomTab.Navigator
       style={myStyles.container}
-      initialRouteName="Tintuc"
+      initialRouteName="New"
       screenOptions={{
         tabBarActiveTintColor: '#047c74',
         //tabBarInactiveTintColor: 'black',
@@ -22,8 +22,8 @@ const BottomTabs = () => {
         
       }}>
       <BottomTab.Screen
-        name="Tintuc"
-        component={Tintuc}
+        name="News"
+        component={News}
         options={{
           tabBarLabel: 'Tin tức',
           tabBarIcon: ({color, size}) => (

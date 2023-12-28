@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
   },
   topSection: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    justifyContent: 'center',
     alignItems: 'center',
     height: 34,
     marginTop: 35,
@@ -77,6 +77,7 @@ const styles = StyleSheet.create({
   txtHeader: {
     fontSize: 22,
     fontWeight: 'bold',
+    color: 'white'
   },
   botSection: {
     padding: 15,
