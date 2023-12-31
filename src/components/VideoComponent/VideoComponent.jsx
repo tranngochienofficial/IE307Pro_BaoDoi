@@ -1,6 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { StyleSheet, Dimensions, TouchableOpacity, Text, View, Image } from 'react-native';
+import { StyleSheet, Dimensions, TouchableOpacity, Text, View, Image, Animated } from 'react-native';
 import Video from 'react-native-video';
+import Icon  from 'react-native-vector-icons/FontAwesome';
+import CommentListComponent from '../CommentListComponent/CommentListComponent';
 
 const VideoComponent = ({video, isActive }) => {
   const [isPlaying, setIsPlaying] = useState(true);
@@ -9,6 +11,7 @@ const VideoComponent = ({video, isActive }) => {
   const [isClickComment, setIsClickComment] = useState(false)
   const [isClickShare, setIsClickShare] = useState(false)
 
+  const numOfComments = (video.comments && video.comments.length) || 0;
   const clickLike = () => {
     setIsLiked(!isLiked)
   }
@@ -44,51 +47,63 @@ const VideoComponent = ({video, isActive }) => {
     }
   }, [isActive]);
 
-  return (
-    <TouchableOpacity style={styles.container} onPress={togglePlayPause}>
-       <Video
-        ref={videoRef}
-        source={video.url}
-        style={styles.video}
-        paused={!isPlaying}
-        repeat={true}
-        resizeMode="cover"
-        />
+  const translateY = useRef(new Animated.Value(1000)).current;
 
+  useEffect(() => {
+      Animated.timing(translateY, {
+        toValue: isClickComment ? 0 : 1000,
+        duration: 500, // Điều chỉnh thời gian hiệu ứng
+        useNativeDriver: false, // Cần thiết khi sử dụng Animated.View
+      }).start();
+    }, [isClickComment]);
+
+  return (
+    <View style={styles.container} >
+      <TouchableOpacity onPress={togglePlayPause} style={styles.container}>
+        <Video
+          ref={videoRef}
+          source={video.url}
+          style={styles.video}
+          paused={!isPlaying}
+          repeat={true}
+          resizeMode="cover"
+          />
+      </TouchableOpacity> 
       <View style={styles.overlay}>
         <View style={{display: 'flex', marginLeft: 310, marginBottom: 30}}>
             <View style={styles.iconContainer}>
               <View style={styles.avatar}>
-
+                <View>
+                  <Text style={{color: '#000'}}>User avatar</Text>
+                </View>
               </View>
             </View>
+
             <TouchableOpacity style={styles.iconContainer} onPress={clickLike}>
-              <Image source={require('../../assets/icons8-like-50.png')} style={{height: 40, width: 40}}/>
+              <Icon name="heart" size={40} color={isLiked ? 'red' : 'white'} style={styles.icon} />
               <Text style={styles.iconText}>{like}</Text>
             </TouchableOpacity>
             <TouchableOpacity style={styles.iconContainer} onPress={clickComment}>
-              <Image source={require('../../assets/icons8-comment-50.png')} style={{height: 40, width: 40}}/>
-              <Text style={styles.iconText}>{video.comment}</Text>
+              <Icon name="comment" size={40} color="white" style={styles.icon} />
+              <Text style={styles.iconText}>{numOfComments}</Text>
             </TouchableOpacity>
             <TouchableOpacity style={styles.iconContainer} onPress={clickShare}>
-              <Image source={require('../../assets/icons8-share-50.png')} style={{height: 40, width: 40}}/>
+              <Icon name="share" size={40} color="white" style={styles.icon} />
               <Text style={styles.iconText}>{video.share}</Text>
             </TouchableOpacity>
             <View style={styles.iconContainer}>
-              <Image source={require('../../assets/icons8-more-30.png')} style={{height: 40, width: 40}}/>
+              <Icon name="ellipsis-h" size={40} color="white" style={styles.icon} />
             </View>
         </View>
         <Text style={styles.title}>{video.title}</Text>
-        {isClickComment && (
-          <View style={styles.commentContainer}>
-            <Text style={styles.userComment}>User 1: comment 1</Text>
-            <Text style={styles.userComment}>User 2: comment 2</Text>
-            <Text style={styles.userComment}>User 3: comment 3</Text>
-          </View>
-        )}
+
+        <Animated.View style={[styles.commentContainer, { transform: [{ translateY }] }]}>
+          {isClickComment && 
+            <CommentListComponent comments={video.comments} onPress={clickComment} />}
+        </Animated.View>
      
       </View>
-    </TouchableOpacity>
+    </View>
   );
 };
 
@@ -118,7 +133,7 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     alignItems: 'center',
     marginVertical: 8,
-    alignItems: 'center',
+    justifyContent: 'center'    
   },
   iconText: {
     color: 'white',
@@ -129,19 +144,22 @@ const styles = StyleSheet.create({
     height: 70,
     borderRadius: 35,
     backgroundColor: 'yellow',
+    display: 'flex', 
+    alignItems: 'center',
+    justifyContent: 'center'
   },
   commentContainer: {
-      width: '100%',
-      height: 300,
-      backgroundColor: 'white',
-      borderRadius: 10,
-      padding: 20,
-      margin: 15,
-      position: 'absolute',
-    },
-    userComment: {
+    width: '100%',
+    height: 300,
+    backgroundColor: 'white',
+    borderRadius: 10,
+    padding: 20,
+    margin: 15,
+    position: 'absolute',
+  },
+  userComment: {
     fontSize: 18,
-  }
+}
 });
 
 export default VideoComponent;

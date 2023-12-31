@@ -43,9 +43,7 @@ const AuthStack = () => {
               name="ArticleDetail"
               component={ArticleDetail}
               options={({ route }) => ({
-                title: route.params && route.params.article
-                  ? route.params.article.title
-                  : 'Default Title', // Sử dụng articleTitle từ tham số route.params.article nếu có, ngược lại sử dụng Default Title
+                title: '',
                 headerShown: true,
                 headerTitleAlign: 'center',
                 headerStyle: {

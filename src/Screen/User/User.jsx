@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import { useAuth } from '../../../AuthContext';
+import  Icon  from 'react-native-vector-icons/FontAwesome';
 
 const User = ({navigation}) => {
   const clickLogin = () => {
@@ -9,12 +10,12 @@ const User = ({navigation}) => {
   }
 
   const { user, logout } = useAuth()
- 
   const handleLogout = async () => {
     await logout()
     navigation.navigate('Tabs');
 
   }
+
   return (
     <ScrollView style={styles.container}>
       <View style={styles.userInfoContainer}>
@@ -30,13 +31,13 @@ const User = ({navigation}) => {
       </View>
       <View style={styles.menuContainer}>
         <View style={styles.menuRow}>
-          <Image source={require('../../assets/icons8-save.gif')} style={styles.icon}/>
+          <Icon name="save" size={30} color="black" style={styles.icon} />
           <Text style={styles.menuItem}>Đã lưu</Text>
           <Image source={require('../../assets/icons8-follow.gif')} style={styles.icon}/>
           <Text style={styles.menuItem}>Đang theo dõi</Text>
         </View>
         <View style={styles.menuRow}>
-          <Image source={require('../../assets/icons8-download.gif')} style={styles.icon}/>
+          <Icon name="download" size={30} color="black" style={styles.icon} />
           <Text style={styles.menuItem}>Tin đã tải</Text>
           <Image source={require('../../assets/icons8-time-machine.gif')} style={styles.icon}/>
           <Text style={styles.menuItem}>Đọc gần đây</Text>

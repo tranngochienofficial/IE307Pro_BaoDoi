@@ -5,11 +5,11 @@ const ArticleMiniComponentBig = ({ article }) => {
   return (
     <View style={styles.container}>
         <View>
-            {article.imgUrl ? (
-                <Image source={{ uri: article.imgUrl }} style={styles.img} />
+            {article.imgUrl && article.imgUrl.trim() !== '' ? (
+                <Image source={{ uri: article.imgUrl }} style={styles.img}/>
             ) : (
                 <View style={styles.img}>
-                {/* Nội dung hoặc kiểu gì đó khi không có hình ảnh */}
+                    {/* Nội dung hoặc kiểu gì đó khi không có hình ảnh */}
                 </View>
             )}
         </View>

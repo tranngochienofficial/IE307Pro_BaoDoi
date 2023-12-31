@@ -9,6 +9,9 @@ import {
 import { FlatList, ScrollView, Switch } from 'react-native-gesture-handler';
 import { DATA } from '../../datas/datas'
 import AsyncStorage from '@react-native-async-storage/async-storage';
+// import DraggableFlatList, {
+//   ScaleDecorator,
+// } from "react-native-draggable-flatlist";
 
 const  Categories = ({navigation}) => {
   const [isSimpleMode, setIsSimpleMode] = useState(false);
@@ -101,6 +104,9 @@ useEffect(() => {
       setArticleMiniStyle('small')
       navigation.navigate('News', {articleMiniStyleNew})
    }
+
+  const [data, setData] = useState(DATA);
+
    return (
       <ScrollView style = {styles.container}>
          <View style={{height: 230}}>
@@ -122,7 +128,6 @@ useEffect(() => {
                </TouchableOpacity>
             </View>
             <View style={{top: 80,display: 'flex', flexDirection: 'row', justifyContent: 'space-between'}}> 
-              <Text style={{fontSize: 18, marginBottom: 10}}>Thay đổi</Text>  
                   <TouchableOpacity style={{ marginRight: 10 }} onPress={setColumnStyle}>
                   {!isColumnStyle ? (
                      <Image
@@ -142,7 +147,7 @@ useEffect(() => {
          <View style={{borderTopWidth: 5, borderTopColor: '#dce3de', paddingTop: 20}}>
             {!isColumnStyle ? (
                <FlatList
-                  data={formatData(DATA)}
+                  data={formatData(data)}
                   renderItem={renderRow}
                   keyExtractor={(item, index) => index.toString()}
                   
@@ -153,6 +158,12 @@ useEffect(() => {
                      renderItem={renderColumnItem}
                      keyExtractor={(item, index) => index.toString()}
                   />
+                  // <DraggableFlatList
+                  //    data={data}
+                  //    renderItem={renderColumnItem}
+                  //    keyExtractor={(item, index) => index.toString()}
+                  //    onDragEnd={({ data: newData }) => setData(newData)}
+                  // />
             )}
          </View>
 

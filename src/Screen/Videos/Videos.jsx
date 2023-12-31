@@ -2,16 +2,8 @@ import React, { useState } from 'react';
 import { StyleSheet, Dimensions } from 'react-native';
 import VideoComponent from '../../components/VideoComponent/VideoComponent';
 import Swiper from 'react-native-swiper';
-
+import { datas } from '../../datas/videoData'
 const Videos = () => {
-  const datas = [
-    { url: require('../../assets/1.mp4'), like: 10, comment: 5, share: 30, title: 'Video 1'},
-    { url: require('../../assets/2.mp4'), like: 100, comment: 50, share: 30, title: 'Video 2'},
-    { url: require('../../assets/3.mp4'), like: 1000, comment: 50, share: 30, title: 'Video 3'},
-    { url: require('../../assets/4.mp4'), like: 10000, comment: 50, share: 300, title: 'Video 4'},
-
-    // Add more videos as needed
-  ];
 
   const [activeIndex, setActiveIndex] = useState(0);
   const onIndexChanged = (index) => {

@@ -1,34 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import {
-  Text,
   View,
-  ScrollView,
   StyleSheet,
-  Image,
-  StatusBar,
-  TouchableOpacity,
-  ImageBackground,
-  SafeAreaView,
-  FlatList,
+  Text,
 } from 'react-native';
 
-import { DATA } from '../../datas/datas'; 
 import ArticleList from './ArticleList';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import  Header  from './Header'
+import { ScrollView } from 'react-native-gesture-handler';
 
-const Item = ({ title, onPress }) => (
-  <TouchableOpacity onPress={onPress}>
-    <View style={styles.item}>
-      <Text style={styles.title}>{title}</Text>
-    </View>
-  </TouchableOpacity>
-);
-
-const News = ({ navigation, route }) => {
-
-  const ChuyenMucEvents = () => {
-    navigation.navigate('Categories');
-  };
+const News = ({ route }) => {
 
   let getCategory = ''
   if (route.params) {
@@ -36,14 +18,16 @@ const News = ({ navigation, route }) => {
   }
 
   const {articleMiniStyleNew} = route.params || ''
+
   const [category, setCategory] = useState(getCategory ? getCategory : 'Nóng')
+
   useEffect(() => {
     if (getCategory) {
       setCategory(getCategory);
     }
   }, [getCategory]);
 
-
+//press category
   const handleItemPress = (item) => {
     setCategory(item.title)
   };
@@ -67,58 +51,9 @@ const News = ({ navigation, route }) => {
     loadArticleMiniStyle();
   }, []); // Empty dependency array ensures the effect runs only once when the component mounts
 
-  const navigateToUser = () => {
-    navigation.navigate('User')
-  }
   return (
     <View style={styles.container}>
-      <ImageBackground
-        style={styles.IBTop}
-        source={require('./assets/header.png')}>
-        <View style={styles.topSection}>
-          <StatusBar translucent={true} backgroundColor="transparent" />
-
-          <TouchableOpacity style={styles.imgList} onPress={ChuyenMucEvents}>
-            <Image
-              style={styles.imgList}
-              source={require('./assets/list.png')}
-            />
-          </TouchableOpacity> 
-
-          <TouchableOpacity style={styles.imgSearch}>
-            <Image
-              style={styles.imgSearch}
-              source={require('./assets/search.png')}
-            />
-          </TouchableOpacity>
-
-          <TouchableOpacity style={styles.imgAvatar} onPress={navigateToUser}>
-            <Image
-              style={styles.imgAvatar}
-              source={require('./assets/avatar.png')}
-            />
-          </TouchableOpacity>
-
-          <View style={styles.viewFlatList}>
-          <FlatList
-              horizontal={true}
-              data={DATA}
-              renderItem={({ item }) => (
-                <Item
-                  title={item.title}
-                  onPress={() => handleItemPress(item)}
-                />
-              )}
-              keyExtractor={(item) => item.id}
-            />  
-          </View>
-        </View>
-
-        <View style={styles.topSection2}>
-          <Text style={styles.txtWeather}>Weather | Time</Text>
-        </View>
-
-      </ImageBackground>
+      <Header category={category} handleItemPress={handleItemPress} />
       <ScrollView style={{marginBottom: 100}}>
         <ArticleList category={category} articleMiniStyle={articleMiniStyleNew ? articleMiniStyleNew : articleMiniStyle}/>
       </ScrollView>
@@ -129,12 +64,12 @@ const News = ({ navigation, route }) => {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: 'white',
-    display: 'flex'
+    display: 'flex',
   },
   IBTop: {
     flexDirection: 'column',
     resizeMode: 'center',
-    paddingBottom: 15
+    paddingBottom: 15,
   },
   topSection: {
     flexDirection: 'row',
@@ -145,11 +80,11 @@ const styles = StyleSheet.create({
   },
   topSection2: {
     left: '5%',
+    top: 15
   },
   txtWeather: {
     fontSize: 16,
     color: 'white',
-
   },
   imgList: {
     height: 22,
@@ -159,11 +94,24 @@ const styles = StyleSheet.create({
     tintColor: 'white',
   },
   imgSearch: {
-    height: 22,
-    width: 22,
-    position: 'absolute',
-    right: '16%',
-    tintColor: 'white',
+  height: 22,
+  width: 22,
+  tintColor: 'white',
+  },
+  searchContainer: {
+    height: 40, 
+    width: '70%',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: 'rgba(255, 255, 255, 0.7)', 
+    borderRadius: 20,
+    paddingHorizontal: 10, 
+  },
+  inputSearch: {
+    flex: 1,
+    marginLeft: 10, // Adjust the margin as needed
+    color: 'black', // Adjust the text color as needed
   },
   imgAvatar: {
     height: 27,
@@ -175,17 +123,29 @@ const styles = StyleSheet.create({
     resizeMode: 'center',
   },
   viewFlatList: {
-    width: '60%',
-    right: '70%',
+    display: 'flex',
+    height: 50,
+    top: 15
   },
   item: {
-    marginHorizontal: 6,
+    height: '100%',
+    display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
   },
   title: {
-    fontSize: 17.5,
+    fontSize: 20,
+    marginLeft: 10,
+    marginRight: 10,
     color: 'white',
+    fontWeight: '600'
+  },
+  textTitle: {
+    color: 'red', 
+    fontSize: 22,
+    fontWeight: 'bold', 
+    marginLeft: 20,
+    marginTop: 10
   },
 });
 
